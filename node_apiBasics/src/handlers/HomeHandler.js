@@ -3,8 +3,8 @@ import { APPLICATION_TYPE } from "../utils/Headers.js";
 
 const allRoutes = {
   // 404 Route default
-  "/user:get": async(req, res) => {
-    
+  "/user:get": async (req, res) => {
+    throw new Error("");
     res.write("GET");
     res.end();
   },
@@ -31,7 +31,6 @@ function homeHandler(req, res) {
 
 const globalErrorHandler = (res) => {
   return (error) => {
-    console.log("An error Occured ", error.stack);
     res.writeHead(500, APPLICATION_TYPE);
     res.write(
       JSON.stringify({
