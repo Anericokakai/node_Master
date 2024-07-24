@@ -1,13 +1,11 @@
 import { parse } from "node:url";
 import { APPLICATION_TYPE } from "../utils/Headers.js";
+import { routes } from "../routes/User.routes.js";
 
+
+const userRoutes=routes({userService:{}})
 const allRoutes = {
-  // 404 Route default
-  "/user:get": async (req, res) => {
-    throw new Error("");
-    res.write("GET");
-    res.end();
-  },
+  ...userRoutes,
   default: (req, res) => {
     res.writeHead(404, APPLICATION_TYPE);
     res.write("Oops You are Accessing a Wrong Route !!!");
@@ -32,12 +30,14 @@ function homeHandler(req, res) {
 const globalErrorHandler = (res) => {
   return (error) => {
     res.writeHead(500, APPLICATION_TYPE);
+
     res.write(
       JSON.stringify({
         error: "Internal Server Error",
         errorMessage: error.message,
       })
     );
+    console.log({error,errorMessage:error.message})
     return res.end();
   };
 };
