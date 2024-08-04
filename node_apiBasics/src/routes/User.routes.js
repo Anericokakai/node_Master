@@ -11,7 +11,8 @@ const routes = ({ userService }) => ({
     const data = await once(req, "data");
     const userData = JSON.parse(data);
     const user = new User(userData);
-    const userId = user.userId;
+    const userId =  await userService.registerUser(user);
+console.log(userId)
     res.writeHead(201, APPLICATION_TYPE);
     res.write(
       JSON.stringify({
@@ -19,7 +20,7 @@ const routes = ({ userService }) => ({
         userId,
       })
     );
-    return  res.end();
+    return res.end();
   },
 });
 

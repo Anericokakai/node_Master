@@ -1,9 +1,9 @@
 import { randomUUID } from "node:crypto";
 export default class User {
-  constructor({ name, emai, password }) {
+  constructor({ name, email, password }) {
     this.userId = randomUUID(),
     this.name = name
-      this.email = emai,
+      this.email = email,
       this.password = password
   }
 }
